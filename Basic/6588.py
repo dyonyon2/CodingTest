@@ -76,23 +76,60 @@
 #                 print(num," = ",tmp1," + ",tmp2)
 #                 break
 
-# 풀이 2-2 : 에라토스테네스의 체
+# 풀이 2-2 : 에라토스테네스의 체  => 시간 초과
+# import math
+# MAX = 1000000
+# array = [True]*(MAX+1)
+
+# array[0] = False
+# array[1] = False
+# for i in range (2,MAX+1):
+#     for j in range (2,int(math.sqrt(i))+1):
+#         if i%j==0 and i!=j:
+#             array[i] = False
+
+# while True:
+#     num = int(input())
+#     for tmp1 in range(2,num): #lst를 돌면서 제일 작은 소수 값부터 문제의 조건이 성립하는 쌍을 찾는다.
+#         if array[tmp1] == True:
+#             tmp2 = num - tmp1
+#             if array[tmp2]==True:
+#                 print(num," = ",tmp1," + ",tmp2)
+#                 break
+
+# 풀이 2-3 : 에라토스테네스의 체 다른 방식으로 사용. 하나의 숫자의 제곱근까지만 검사해도 된다는 것 = 그 숫자까지의 모든 숫자가 제곱근 밑 숫자의 배수로 소수가 걸러진다는 뜻
 import math
+
 MAX = 1000000
-array = [True]*(MAX+1)
+array = [True] * (MAX+1)
 
 array[0] = False
 array[1] = False
-for i in range (2,MAX+1):
-    for j in range (2,int(math.sqrt(MAX))+1):
-        if i%j==0 and i!=j:
-            array[i] = False
+for i in range (2,int(math.sqrt(MAX))+1):
+    for j in range (i+i,MAX+1,i):
+        array[j] = False
 
+# while True:
+#     num = int(input())
+#     flag = False
+#     if num == 0:
+#         break
+#     for tmp1 in range(2,num): #lst를 돌면서 제일 작은 소수 값부터 문제의 조건이 성립하는 쌍을 찾는다.
+#         if array[tmp1] == True:
+#             tmp2 = num - tmp1
+#             if array[tmp2]==True:
+#                 print(num,"=",tmp1,"+",tmp2)
+#                 flag = True
+#                 break
+#     if flag == False:
+#         print("Goldbach's conjecture is wrong.")
 while True:
     num = int(input())
+    flag = False
+    if num == 0:
+        break
     for tmp1 in range(2,num): #lst를 돌면서 제일 작은 소수 값부터 문제의 조건이 성립하는 쌍을 찾는다.
         if array[tmp1] == True:
-            tmp2 = num - tmp1
-            if array[tmp2]==True:
-                print(num," = ",tmp1," + ",tmp2)
+            if array[num-tmp1]==True:
+                print(num,"=",tmp1,"+",num-tmp1)
                 break
