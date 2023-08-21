@@ -1,3 +1,4 @@
+[git 처음 연결]
 git init
 git add README.md
 git commit -m "first commit"
