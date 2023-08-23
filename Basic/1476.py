@@ -31,3 +31,35 @@
 # 15 28 19
 # 예제 출력 4 
 # 7980
+
+# 풀이 1 : 나머지 연산 사용
+import sys
+input = sys.stdin.readline
+
+# E <=15, S<=28, M <=19
+E,S,M = map(int,input().split())
+
+# X 년 => X%16, X%29, X%20
+X = E
+while True:
+    # print("while in ",X)
+    if ( X%28==0 and S == 28 ) or ( X%28 == S):
+        if ( X%19==0 and M == 19 ) or ( X%19 == M):
+            print(X)
+            break
+    X += 15
+
+# 풀이 2 : 1년씩 올라가면서 확인
+E,S,M,cnt =1,1,1,1
+
+i_E , i_S , i_M = map(int,input().split())
+
+while(True):
+    if i_E==E and i_S==S and i_M==M :
+        break
+    E+=1 ; S+=1 ; M+=1; cnt+=1
+    if E>=16 : E-=15
+    if S>=29 : S-=28
+    if M>=20 : M-=19
+
+print(cnt)
