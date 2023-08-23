@@ -55,3 +55,59 @@
 # 예제 출력 7 
 # 2228
 
+# 풀이 1 : 가장 가까운 채널 찾기 -> 고장난 버튼이 있는지 확인 -> 있으면 다음, 없으면 해당 번호 자릿수 + 가장 가까운 채널과 목표 채널의 차이값
+# 예외처리 : index에서 값이 없을때의 예외 처리, 
+import sys 
+input = sys.stdin.readline
+
+now = 100
+channel = int(input())
+broken = int(input())
+if broken != 0:
+    brokenList = list(map(int,input().split()))
+
+tmp = 0
+ansChannel = -1
+count = 0
+
+count = abs(now-channel)
+
+# 가장 가까운 채널 찾기
+def check(num):
+    channelList = list(map(int,str(num)))
+    for i in channelList:
+        try :
+            brokenList.index(i)
+            return -1
+        except:
+            pass
+    return num
+
+# 가장 가까운 채널 찾기 -> 버튼 눌러야하는 개수 찾기
+while True:
+    if broken == 10:
+        break
+    if tmp == 0:
+       ansChannel = check(channel) 
+    else:
+        tmp1 = -1
+        tmp2 = -1
+        tmp1 = check(channel+tmp)
+        if channel-tmp >= 0: 
+            tmp2 = check(channel-tmp)
+        if tmp1 != -1 or tmp2 != -1:
+            if tmp1 != -1 and tmp2 != -1:
+                ansChannel = min(tmp1,tmp2)
+            else:
+                ansChannel = max(tmp1,tmp2)
+    if ansChannel != -1:
+        break
+    tmp += 1
+
+# 가장 가까운 채널 = ansChannel
+if ansChannel !=-1:
+    count1 = len(str(ansChannel)) + abs(ansChannel- channel)
+    count2 = abs(ansChannel-now) + abs(ansChannel- channel)
+    print(min(count, count1, count2))
+else:
+    print(count)
