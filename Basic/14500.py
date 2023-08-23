@@ -6,8 +6,6 @@
 # 정사각형의 변끼리 연결되어 있어야 한다. 즉, 꼭짓점과 꼭짓점만 맞닿아 있으면 안 된다.
 # 정사각형 4개를 이어 붙인 폴리오미노는 테트로미노라고 하며, 다음과 같은 5가지가 있다.
 
-
-
 # 아름이는 크기가 N×M인 종이 위에 테트로미노 하나를 놓으려고 한다. 종이는 1×1 크기의 칸으로 나누어져 있으며, 각각의 칸에는 정수가 하나 쓰여 있다.
 
 # 테트로미노 하나를 적절히 놓아서 테트로미노가 놓인 칸에 쓰여 있는 수들의 합을 최대로 하는 프로그램을 작성하시오.
@@ -47,3 +45,50 @@
 # 2 1 2 1 2 1 2 1 2 1
 # 예제 출력 3 
 # 7
+
+# 미해결....
+
+import sys
+input = sys.stdin.readline
+m,n = map(int,input().split())
+array = [[0]*n]*m
+
+def check(a,b,cnt,hist):
+    for i in range(0,len(hist),2):
+        if a == hist[i] and b == hist[i+1]:
+            return -10000
+    if a>=m or b>=n or a<0 or b<0:
+        return -10000
+    elif cnt==1:
+        return array[a][b]
+    else:
+        hist.append(a)
+        hist.append(b)
+        tmp1 = array[a][b]+check(a+1,b,cnt-1,hist)
+        tmp2 = array[a][b]+check(a,b+1,cnt-1,hist)
+        tmp3 = array[a][b]+check(a-1,b,cnt-1,hist)
+        tmp4 = array[a][b]+check(a,b-1,cnt-1,hist)
+        if cnt==2:
+            #세로
+            if hist[0]==a and hist[2]==a:
+                tmp5 = array[a][b]+check(a+1,hist[3],cnt-1,hist)
+                tmp6 = array[a][b]+check(a-1,hist[3],cnt-1,hist)
+                return max([tmp1,tmp2,tmp3,tmp4,tmp5,tmp6])
+            #가로
+            elif hist[1]==b and hist[3]==b:
+                tmp5 = array[a][b]+check(hist[2],b+1,cnt-1,hist)
+                tmp6 = array[a][b]+check(hist[2],b-1,cnt-1,hist)
+                return max([tmp1,tmp2,tmp3,tmp4,tmp5,tmp6])
+        return max([tmp1,tmp2,tmp3,tmp4])
+
+for i in range(m):
+    array[i] = list(map(int,input().split()))
+
+ans = 0
+for i in range(m):
+    for j in range(n):
+        history=[]
+        tmp = check(i,j,4,history)
+        if tmp > ans :
+            ans = tmp
+print(ans)
