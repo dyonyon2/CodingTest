@@ -24,3 +24,19 @@
 # 예제 출력 3 
 # 252
 
+# 풀이 1 : 자릿수별로 처리한 뒤, 가장 높은 자릿수는 해당 숫자가 몇개있는지 파악한 뒤 추가
+
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+# 1~9 => 9개
+# 10~99 => 90개 *2
+# 100~999 => 900개 *3
+# 1000~9999 => 9000개 *4
+
+result = 0
+for i in range(1,len(str(N))):
+    result += 9*10**(i-1)*i
+result += (N - 10**(len(str(N))-1)+1) * len(str(N))
+print(result)
