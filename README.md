@@ -5,6 +5,7 @@
                    맞는 방식 => arr = [[0 for j in range(cols)] for i in range(rows)]
 - List는 변수 선언 이후 값이 바뀔수 있는 mutable 변수이기 때문에 함수 내에서 수정해줘도 전역변수처럼 사용이 가능하다.
   But 일반 변수는 함수 내에서 값을 바꾸는 것은 함수 내에서 global 선언하기 전에는 불가능 하다.
+- List는 sort, remove, append, pop 함수 사용 가능
 [Algorithm]
 - 약수의 합 : 1~N의 자연수중 i를 약수로 가지는 개수는 N/i가 된다.
 - 약수 합 구하는 법 : i*j의 약수는 i,j 임을 이용하여 i와 j를 1부터 구하려는 수까지 반복하여 array[i*j] += i를 해주어 해당 인덱스 숫자에 대한 약수를 구한다.
