@@ -8,13 +8,25 @@
 - List는 sort, remove, append, pop 함수 사용 가능
 - join 함수를 사용하면, 리스트에 있는 요소 하나하나를 합쳐서 하나의 문자열로 바꾸어주는 함수이다. -> '구분자'.join(리스트) -> ''.join(map(str,result))
 - 숫자 앞자리 0 채우기 -> str변수.zfill(자릿수)
+- sorted 함수 : sorted(list) => 리스트 정렬된 것을 리턴한다. sorted(list, reverse=true) => 리스트 역정렬된 것을 리턴한다.
+
+- 순열(순서 고려 O, (A,B), (B,A)는 다른 것) : 파이썬에서 제공하는 순열 함수가 있다. 리스트를 넘겨 고르는 개수를 넘기고, list로 받으면 된다. 
+    ex) import itertools
+        arr = ['A', 'B', 'C']
+        nPr = itertools.permutations(arr, 2)
+        print(list(nPr))
+- 조합(순서 고려 X, (A,B), (B,A)는 같은 것) : 파이썬에서 제공하는 조합 함수가 있다. 리스트를 넘겨 고르는 개수를 넘기고, list로 받으면 된다. 
+    ex) import itertools
+        arr = ['A', 'B', 'C']
+        nCr = itertools.combinations(arr, 2)
+        print(list(nCr))
 [Algorithm]
 - 약수의 합 : 1~N의 자연수중 i를 약수로 가지는 개수는 N/i가 된다.
 - 약수 합 구하는 법 : i*j의 약수는 i,j 임을 이용하여 i와 j를 1부터 구하려는 수까지 반복하여 array[i*j] += i를 해주어 해당 인덱스 숫자에 대한 약수를 구한다.
 - 유클리드 호제법 : 최대 공약수를 구하는 방법. A, B의 최대 공약수는 A를 B로 나눈 나머지 R을 구하고, B를 R로 나눈 나머지 R'을 구한다. 이를 반복하여 나누어 떨어졌을 때의 나눈 값이 최대 공약수가 된다. ( R`n-1` % R`n` = 0 에서는 R`n`이 최대 공약수이다.)
 - 최소 공배수(Least Common Multiple) 구하는 법 : A 와 B를 곱한 뒤 최대 공약수(Greatest Common Divisor)로 나눈다.
 - 에라토스테네스의 체 : 소수 구하는 법. 숫자 N이 소수인지 판단하기 위해서는 2부터 N의 제곱근까지만 나누어떨어지는지 검사하면 된다.
-- 브루트 포스(키 전수조사, 무차별 대입) : 조합 가능한 모든 문자열을 하나씩 대입해 보는 방식
+- 브루트 포스(Brute Force, 키 전수조사, 무차별 대입) : 조합 가능한 모든 문자열을 하나씩 대입해 보는 방식
 
 - 달력 표기 문제 : 년도 탐색은 1씩하지 말고, 하나를 잡고 interval 만큼 증가시키면서 비교하여 탐색 구간 줄이기! 최대값일때에는 나머지가 0이지만 표기는 최대값인 경우도 확인!
 
