@@ -98,7 +98,7 @@ input = sys.stdin.readline
 num = int(input())
 array = [0 for _ in range(num+1)]
 
-for i in range(2,num+2):
+for i in range(2,num+1):
     min = array[i-1] + 1
     tmp = min
     if i%3 == 0:
@@ -109,6 +109,7 @@ for i in range(2,num+2):
         tmp = array[i//2] + 1
         if tmp < min:
             min = tmp
+    array[i] = min
 
 print(array[num])
     

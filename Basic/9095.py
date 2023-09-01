@@ -26,6 +26,37 @@
 # 44
 # 274
 
+# 풀이 1 : BF 방식
+
+# import sys
+# input = sys.stdin.readline
+
+# loop= int(input())
+
+# for _ in range(loop):
+#     num = int(input())
+#     count = 0
+#     array = []
+
+#     def bf():
+#         if sum(array) == num:
+#             # print(array)
+#             global count
+#             count += 1
+#             return
+#         for i in range(1,4):
+#             if sum(array)+i > num:
+#                 break
+#             array.append(i)
+#             bf()
+#             array.pop()
+
+#     bf()
+#     print(count)
+
+
+# 풀이 2 : DP 방식
+
 import sys
 input = sys.stdin.readline
 
